@@ -11,7 +11,12 @@ import Attendance from "./components/Attendance";
 import MyDues from "./components/MyDues";
 import Login from "./components/login";
 import useLocalStorage from "./Hooks/useLocalStorage";
-import AdminPanel from "./components/AdminPanel";
+import AdminPanel from "./components/Admin/AdminPanel";
+import MessStatus from "./components/Admin/MessStatus";
+import AttendanceAdmin from "./components/Admin/AttendanceAdmin";
+import Complaints from "./components/Admin/Complaints";
+import Dues from "./components/Admin/Dues";
+import Students from "./components/Admin/Students";
 
 function App() {
   //state
@@ -35,37 +40,50 @@ function App() {
             user={user}
             setUser={setUser}
           />
-          {login.access === "student" ? (
-            <>
-              <SideBar
-                user={user}
-                sideBarStatus={sideBarStatus}
-                setSideBarStatus={setSideBarStatus}
-              />
-              <Switch>
-                <Route path="/" exact>
-                  <Home />
-                </Route>
-                <Route path="/choose" exact>
-                  <DecideToEat />
-                </Route>
-                <Route path="/menu" exact>
-                  <Menu />
-                </Route>
-                <Route path="/request-service" exact>
-                  <RequestService />
-                </Route>
-                <Route path="/attendance" exact>
-                  <Attendance />
-                </Route>
-                <Route path="/my-dues" exact>
-                  <MyDues />
-                </Route>
-              </Switch>
-            </>
-          ) : (
-            <AdminPanel />
-          )}
+
+          <SideBar
+            user={user}
+            sideBarStatus={sideBarStatus}
+            setSideBarStatus={setSideBarStatus}
+          />
+          <Switch>
+            <Route path="/" exact>
+              <Home access={user.access} />
+            </Route>
+            <Route path="/choose" exact>
+              <DecideToEat />
+            </Route>
+            <Route path="/menu" exact>
+              <Menu />
+            </Route>
+            <Route path="/request-service" exact>
+              <RequestService />
+            </Route>
+            <Route path="/attendance" exact>
+              <Attendance />
+            </Route>
+            <Route path="/my-dues" exact>
+              <MyDues />
+            </Route>
+            <Route path="/admin" exact>
+              <AdminPanel login={login} />
+            </Route>
+            <Route path="/admin/mess" exact>
+              <MessStatus />
+            </Route>
+            <Route path="/admin/attendance" exact>
+              <AttendanceAdmin />
+            </Route>
+            <Route path="/admin/complaints" exact>
+              <Complaints />
+            </Route>
+            <Route path="/admin/students" exact>
+              <Students />
+            </Route>
+            <Route path="/admin/dues" exact>
+              <Dues />
+            </Route>
+          </Switch>
         </>
       )}
     </div>

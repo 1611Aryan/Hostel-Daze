@@ -2,8 +2,8 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import hostel from "./../img/hostel.jpg";
 
-const Home = () => {
-  return (
+const Home: React.FC<{ access: string }> = ({ access }) => {
+  return access === "student" ? (
     <StyledHome>
       <img src={hostel} alt="hostel-hero" />
       <div className="overlay"></div>
@@ -14,7 +14,7 @@ const Home = () => {
         </button>
       </div>
     </StyledHome>
-  );
+  ) : null;
 };
 
 const StyledHome = styled.main`

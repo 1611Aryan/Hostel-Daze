@@ -49,6 +49,7 @@ const Login: React.FC<{
         setMessage(null);
         if (res.data.user.access === "admin") {
           setLogin({ status: true, access: "admin" });
+          window.history.pushState({}, "", "/admin");
         } else {
           setLogin({ status: true, access: "student" });
         }

@@ -127,6 +127,7 @@ const StyledOptions = styled.div`
 `;
 
 const StyledLogoutModal = styled.div`
+  z-index: 999;
   position: absolute;
   top: var(--navBarHeight);
   right: 0;
