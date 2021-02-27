@@ -5,8 +5,7 @@ const AdminPanel = () => {
     <StyledAdminPanel>
       <StyledOption
         style={{
-          background:
-            "linear-gradient(89.5deg, rgb(246, 114, 128) 0.2%, rgb(248, 177, 149) 90.6%)",
+          background: "#FF8D8D",
         }}
       >
         <div className="overlay"></div>
@@ -14,8 +13,7 @@ const AdminPanel = () => {
       </StyledOption>
       <StyledOption
         style={{
-          background:
-            "linear-gradient(105.8deg, rgb(255, 225, 64) 11%, rgba(251, 245, 167, 0.98) 121.7%)",
+          background: "#FFFA7D",
         }}
       >
         <div className="overlay"></div>
@@ -23,8 +21,7 @@ const AdminPanel = () => {
       </StyledOption>
       <StyledOption
         style={{
-          background:
-            "linear-gradient(88.7deg, rgb(207, 150, 207) -2.4%, rgb(107, 116, 179) 102%)",
+          background: "#A0E8FF",
         }}
       >
         <div className="overlay"></div>
@@ -32,8 +29,7 @@ const AdminPanel = () => {
       </StyledOption>
       <StyledOption
         style={{
-          background:
-            "linear-gradient(122.9deg, rgb(147, 223, 74) 12.1%, rgb(167, 237, 104) 37.6%, rgb(217, 238, 150) 64.4%)",
+          background: "#C8FF81",
         }}
       >
         <div className="overlay"></div>
@@ -41,8 +37,7 @@ const AdminPanel = () => {
       </StyledOption>
       <StyledOption
         style={{
-          background:
-            "linear-gradient(103deg, rgb(137, 247, 234) 7.3%, rgb(102, 117, 241) 100.2%)",
+          background: "#C984FF",
         }}
       >
         <div className="overlay"></div>
@@ -50,8 +45,7 @@ const AdminPanel = () => {
       </StyledOption>
       <StyledOption
         style={{
-          background:
-            "linear-gradient(109.6deg, rgb(9, 154, 151) 11.2%, rgb(21, 205, 168) 91.1%)",
+          background: "#FEB580",
         }}
       >
         <div className="overlay"></div>
@@ -120,7 +114,7 @@ const StyledOption = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(128, 128, 128, 0.1);
+    //background: rgba(128, 128, 128, 0.1);
   }
   &:hover {
     animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
