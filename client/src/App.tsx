@@ -9,28 +9,25 @@ import Menu from "./components/Menu";
 import RequestService from "./components/RequestService";
 import Attendance from "./components/Attendance";
 import MyDues from "./components/MyDues";
-import Login from "./components/login";
+import Login from "./components/Login";
 import useLocalStorage from "./Hooks/useLocalStorage";
+import AdminPanel from "./components/AdminPanel";
 
 function App() {
   //state
   const [sideBarStatus, setSideBarStatus] = useState(false);
-  const [login, setLogin] = useLocalStorage("login", false);
-  const [user, setUser] = useState<null | {
-    name: string;
-    rollNumber: string;
-    year: string;
-    hostel: string;
-    password: string;
-  }>(null);
+  const [login, setLogin] = useLocalStorage("login", {
+    status: false,
+    access: "none",
+  });
+  const [user, setUser] = useLocalStorage("user", null);
 
   return (
     <div className="App">
-      {!login ? (
+      {!login.status ? (
         <Login setLogin={setLogin} setUser={setUser} />
       ) : (
         <>
-          {" "}
           <Nav
             sideBarStatus={sideBarStatus}
             setSideBarStatus={setSideBarStatus}
@@ -38,31 +35,37 @@ function App() {
             user={user}
             setUser={setUser}
           />
-          <SideBar
-            user={user}
-            sideBarStatus={sideBarStatus}
-            setSideBarStatus={setSideBarStatus}
-          />
-          <Switch>
-            <Route path="/" exact>
-              <Home />
-            </Route>
-            <Route path="/choose" exact>
-              <DecideToEat />
-            </Route>
-            <Route path="/menu" exact>
-              <Menu />
-            </Route>
-            <Route path="/request-service" exact>
-              <RequestService />
-            </Route>
-            <Route path="/attendance" exact>
-              <Attendance />
-            </Route>
-            <Route path="/my-dues" exact>
-              <MyDues />
-            </Route>
-          </Switch>
+          {login.access === "student" ? (
+            <>
+              <SideBar
+                user={user}
+                sideBarStatus={sideBarStatus}
+                setSideBarStatus={setSideBarStatus}
+              />
+              <Switch>
+                <Route path="/" exact>
+                  <Home />
+                </Route>
+                <Route path="/choose" exact>
+                  <DecideToEat />
+                </Route>
+                <Route path="/menu" exact>
+                  <Menu />
+                </Route>
+                <Route path="/request-service" exact>
+                  <RequestService />
+                </Route>
+                <Route path="/attendance" exact>
+                  <Attendance />
+                </Route>
+                <Route path="/my-dues" exact>
+                  <MyDues />
+                </Route>
+              </Switch>
+            </>
+          ) : (
+            <AdminPanel />
+          )}
         </>
       )}
     </div>

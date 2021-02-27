@@ -29,11 +29,11 @@ exports.login = async (req, res) => {
   const rollNumber = req.body.rollNumber;
   const password = req.body.password;
   try {
-    const student = await Hosteller.findOne({ rollNumber });
-    student
-      ? student.password === password
+    const user = await Hosteller.findOne({ rollNumber });
+    user
+      ? user.password === password
         ? res
-            .send({ success: true, message: "Login Successful", student })
+            .send({ success: true, message: "Login Successful", user })
             .status(200)
         : res.send({ success: false, message: "Incorrect Password" })
       : res

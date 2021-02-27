@@ -9,13 +9,14 @@ import placeholderImage from "./../img/placeholder.png";
 interface NavInterface {
   sideBarStatus: boolean;
   setSideBarStatus: React.Dispatch<React.SetStateAction<boolean>>;
-  setLogin: React.Dispatch<React.SetStateAction<boolean>>;
+  setLogin: any;
   user: {
     name: string;
     rollNumber: string;
     year: string;
     hostel: string;
     password: string;
+    access: string;
   } | null;
   setUser: React.Dispatch<
     React.SetStateAction<{
@@ -24,6 +25,7 @@ interface NavInterface {
       year: string;
       hostel: string;
       password: string;
+      access: string;
     } | null>
   >;
 }
@@ -39,7 +41,6 @@ const Nav: React.FC<NavInterface> = ({
   const [logoutModal, setLogoutModal] = useState(false);
 
   //Handlers
-
   const showLogoutModal = () => {
     setLogoutModal(!logoutModal);
   };
@@ -49,7 +50,10 @@ const Nav: React.FC<NavInterface> = ({
   };
 
   const logout = () => {
-    setLogin(false);
+    setLogin({
+      status: false,
+      access: null,
+    });
     setUser(null);
   };
 
@@ -71,7 +75,9 @@ const Nav: React.FC<NavInterface> = ({
               </StyledLogoutModal>
             )}
           </div>
-          <FontAwesomeIcon icon={faBars} onClick={showSideBar} />
+          {user?.access === "student" ? (
+            <FontAwesomeIcon icon={faBars} onClick={showSideBar} />
+          ) : null}
         </StyledOptions>
       )}
     </StyledNav>

@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 
-const PREFIX = "messenger-";
+const PREFIX = "hostelDaze-";
 
 const useLocalStorage = (
   key: string,
-  providedValue: string | Function | null | undefined | boolean
+  providedValue: string | Function | null | undefined | boolean | object
 ) => {
   providedValue = providedValue === undefined ? null : providedValue;
 

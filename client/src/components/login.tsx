@@ -4,7 +4,7 @@ import styled from "styled-components";
 import hostel from "./../img/hostel2.jpeg";
 
 const Login: React.FC<{
-  setLogin: React.Dispatch<React.SetStateAction<boolean>>;
+  setLogin: any;
   setUser: React.Dispatch<
     React.SetStateAction<{
       name: string;
@@ -45,9 +45,13 @@ const Login: React.FC<{
         password: credentials.password,
       });
       if (res.data.success) {
-        setUser(res.data.student);
+        setUser(res.data.user);
         setMessage(null);
-        setLogin(true);
+        if (res.data.user.access === "admin") {
+          setLogin({ status: true, access: "admin" });
+        } else {
+          setLogin({ status: true, access: "student" });
+        }
       } else {
         setMessage(res.data.message);
         setCredentials({
