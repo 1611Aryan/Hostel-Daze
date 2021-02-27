@@ -15,9 +15,9 @@ const connection = mongoose.connection;
 connection.once("open", () => console.log("Database is Connected"));
 app.use(express.json());
 
-const hostellerRouter = require("./routes/hosteller");
+//const hostellerRouter = require("./routes/hosteller");
 
-app.use("/student", hostellerRouter);
+//app.use("/student", hostellerRouter);
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "client/build")));
