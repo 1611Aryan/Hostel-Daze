@@ -1,4 +1,5 @@
 const express = require("express");
+const path = require("path");
 require("dotenv").config();
 
 const mongoose = require("mongoose");
@@ -19,7 +20,15 @@ const hostellerRouter = require("./routes/hosteller");
 app.use("/student", hostellerRouter);
 
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "client/build")));
+  app.use("/", express.static(path.join(__dirname, "client/build")));
+  app.use("/choose", express.static(path.join(__dirname, "client/build")));
+  app.use("/menu", express.static(path.join(__dirname, "client/build")));
+  app.use(
+    "/request-service",
+    express.static(path.join(__dirname, "client/build"))
+  );
+  app.use("/attendance", express.static(path.join(__dirname, "client/build")));
+  app.use("/my-dues", express.static(path.join(__dirname, "client/build")));
 }
 
 app.listen(port, () => console.log(`Server Running on port ${port}`));
