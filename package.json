@@ -12,8 +12,9 @@
   },
   "type": "commonjs",
   "scripts": {
+    "start": "node server.js",
     "devstart": "nodemon server",
-     "build": "cd client && yarn run build",
+    "build": "cd client && yarn run build",
     "install-client": "cd client && yarn",
     "heroku-postbuild": "yarn run install-client && yarn run build"
   },
