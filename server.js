@@ -15,12 +15,12 @@ const connection = mongoose.connection;
 connection.once("open", () => console.log("Database is Connected"));
 app.use(express.json());
 
-const hostellerRouter = require(path.join(__dirname, "./routes/hosteller"));
+const hostellerRouter = require("./routes/hosteller");
 
 app.use("/student", hostellerRouter);
 
-if (process.env.NODE_ENV === "production" || true) {
-  app.use("/", express.static(path.join(__dirname, "client/build")));
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "client/build")));
   app.use("/choose", express.static(path.join(__dirname, "client/build")));
   app.use("/menu", express.static(path.join(__dirname, "client/build")));
   app.use(
