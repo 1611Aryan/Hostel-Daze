@@ -1,6 +1,9 @@
 const router = require("express").Router();
-
-const { login, add } = require("./../Controllers/hosteller.controller");
+const path = require("path");
+const { login, add } = require(path.join(
+  __dirname,
+  "./../Controllers/hosteller.controller"
+));
 
 router.route("/add").post(add);
 

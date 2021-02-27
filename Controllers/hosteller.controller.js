@@ -1,4 +1,5 @@
-const Hosteller = require("./../Models/hosteller.model");
+const path = require("path");
+const Hosteller = require(path.join(__dirname, "./../Models/hosteller.model"));
 
 exports.add = async (req, res) => {
   const name = req.body.name;
