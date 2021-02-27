@@ -19,7 +19,7 @@ const hostellerRouter = require("./routes/hosteller");
 app.use("/student", hostellerRouter);
 
 if (process.env.NODE_ENV === "production") {
-  app.use("/", express.static("/build"));
+  app.use("/", express.static("/client/build"));
 }
 
 app.listen(port, () => console.log(`Server Running on port ${port}`));
