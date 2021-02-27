@@ -1,9 +1,48 @@
+import { useState } from "react";
 import styled from "styled-components";
+import axios from "axios";
 import yellowGradient from "./../img/yellow-gradient.jpg";
 
 const RequestService = () => {
-  const SubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
+  //URL
+  const URL =
+    process.env.NODE_ENV === "production"
+      ? "/admin/add"
+      : "http://localhost:5000/admin/add";
+
+  //State
+  const [response, setResponse] = useState<{
+    name: string | null;
+    rollNumber: string | null;
+    issue: string | null;
+  }>({
+    name: null,
+    rollNumber: null,
+    issue: null,
+  });
+
+  //Handlers
+
+  const changeHandler = (
+    e:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
+    setResponse({ ...response, [e.target.name]: e.target.value });
+  };
+
+  const SubmitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    try {
+      const res = await axios.post(URL, {
+        name: response.name,
+        rollNumber: response.rollNumber,
+        issue: response.issue,
+      });
+      console.log(res);
+    } catch (err) {
+      throw err;
+    }
   };
 
   return (
@@ -12,11 +51,27 @@ const RequestService = () => {
       <div className="overlay"></div>
       <form onSubmit={SubmitHandler}>
         <label htmlFor="name">Name:</label>
-        <input type="text" name="name" autoFocus />
+        <input
+          type="text"
+          name="name"
+          autoFocus
+          onChange={changeHandler}
+          required
+        />
         <label htmlFor="rollNumber">Roll Number:</label>
-        <input type="text" name="rollNumber" />
+        <input
+          type="text"
+          name="rollNumber"
+          onChange={changeHandler}
+          required
+        />
         <label htmlFor="Issue">Issue:</label>
-        <textarea name="issue" rows={10}></textarea>
+        <textarea
+          name="issue"
+          rows={10}
+          onChange={changeHandler}
+          required
+        ></textarea>
         <button>Submit</button>
       </form>
     </StyledRequestService>

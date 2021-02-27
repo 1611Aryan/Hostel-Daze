@@ -1,6 +1,15 @@
 const path = require("path");
 const Hosteller = require(path.join(__dirname, "./../Models/hosteller.model"));
 
+exports.allStudents = async (req, res) => {
+  try {
+    const students = await Hosteller.find();
+    res.status(200).send(students);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+};
+
 exports.add = async (req, res) => {
   const name = req.body.name;
   const rollNumber = req.body.rollNumber;

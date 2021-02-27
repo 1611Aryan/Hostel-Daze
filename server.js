@@ -16,8 +16,10 @@ connection.once("open", () => console.log("Database is Connected"));
 app.use(express.json());
 
 const hostellerRouter = require(path.join(__dirname, "./Routes/hosteller"));
+const complaintsRouter = require(path.join(__dirname, "./Routes/complaints"));
 
 app.use("/student", hostellerRouter);
+app.use("/admin", complaintsRouter);
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "client/build")));

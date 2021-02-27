@@ -59,7 +59,7 @@ const Nav: React.FC<NavInterface> = ({
 
   return (
     <StyledNav>
-      <Link to="/">
+      <Link to={user?.access === "student" ? "/" : "/admin"}>
         <h1>HostelDaze</h1>
       </Link>
       {!sideBarStatus && (

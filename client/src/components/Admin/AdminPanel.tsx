@@ -7,7 +7,7 @@ const AdminPanel: React.FC<{ login: any }> = ({ login }) => {
       <StyledAdminPanel>
         <StyledOption
           style={{
-            background: "#FF8D8D",
+            background: "#FF6E6E",
           }}
         >
           <div className="overlay"></div>
@@ -17,7 +17,7 @@ const AdminPanel: React.FC<{ login: any }> = ({ login }) => {
         </StyledOption>
         <StyledOption
           style={{
-            background: "#FFFA7D",
+            background: "#FFF962",
           }}
         >
           <div className="overlay"></div>
@@ -27,7 +27,7 @@ const AdminPanel: React.FC<{ login: any }> = ({ login }) => {
         </StyledOption>
         <StyledOption
           style={{
-            background: "#A0E8FF",
+            background: "#48D3FF",
           }}
         >
           <div className="overlay"></div>
@@ -37,7 +37,7 @@ const AdminPanel: React.FC<{ login: any }> = ({ login }) => {
         </StyledOption>
         <StyledOption
           style={{
-            background: "#C8FF81",
+            background: "#B8FF5D",
           }}
         >
           <div className="overlay"></div>
@@ -47,7 +47,7 @@ const AdminPanel: React.FC<{ login: any }> = ({ login }) => {
         </StyledOption>
         <StyledOption
           style={{
-            background: "#C984FF",
+            background: "#C173FF",
           }}
         >
           <div className="overlay"></div>
@@ -57,7 +57,7 @@ const AdminPanel: React.FC<{ login: any }> = ({ login }) => {
         </StyledOption>
         <StyledOption
           style={{
-            background: "#FEB580",
+            background: "#FFAB48",
           }}
         >
           <div className="overlay"></div>
@@ -113,16 +113,13 @@ const StyledAdminPanel = styled.section`
 const StyledOption = styled.div`
   width: calc(100% / 3);
   height: calc(100% / 2);
-
+  font-family: "Open Sans", sans-serif;
   cursor: pointer;
-  font-size: 1.75rem;
-  background: lightcoral;
-  /* margin: 0 5rem; */
+  font-size: 2rem;
   border-radius: 10px;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
   position: relative;
   overflow: hidden;
-
   .overlay {
     z-index: 2;
     position: absolute;
