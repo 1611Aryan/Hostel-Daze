@@ -25,6 +25,7 @@ const AdminPanel: React.FC<{
     });
     setUser(null);
     window.history.pushState({}, "", "/");
+    window.location.reload();
   };
 
   if (login.access === "admin")
@@ -96,6 +97,7 @@ const AdminPanel: React.FC<{
       </StyledAdminPanel>
     );
   else {
+    window.location.reload();
     window.history.pushState({}, "", "/");
     return null;
   }

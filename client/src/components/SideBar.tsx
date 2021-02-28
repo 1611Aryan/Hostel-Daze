@@ -44,6 +44,7 @@ const SideBar: React.FC<SideBarInterface> = ({
     });
     setUser(null);
     window.history.pushState({}, "", "/");
+    window.location.reload();
   };
 
   const HideSideBar = () => {

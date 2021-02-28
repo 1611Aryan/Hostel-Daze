@@ -3,18 +3,24 @@ import { Link } from "react-router-dom";
 import hostel from "./../img/hostel.jpg";
 
 const Home: React.FC<{ access: string }> = ({ access }) => {
-  return access === "student" ? (
-    <StyledHome>
-      <img src={hostel} alt="hostel-hero" />
-      <div className="overlay"></div>
-      <div className="content">
-        <p>Checked In for Lunch/Dinner Yet ?</p>
-        <button>
-          <Link to="/choose">Check In Now</Link>
-        </button>
-      </div>
-    </StyledHome>
-  ) : null;
+  if (access === "student") {
+    return (
+      <StyledHome>
+        <img src={hostel} alt="hostel-hero" />
+        <div className="overlay"></div>
+        <div className="content">
+          <p>Checked In for Lunch/Dinner Yet ?</p>
+          <button>
+            <Link to="/choose">Check In Now</Link>
+          </button>
+        </div>
+      </StyledHome>
+    );
+  } else {
+    window.history.pushState({}, "", "/admin");
+    window.location.reload();
+    return null;
+  }
 };
 
 const StyledHome = styled.main`
