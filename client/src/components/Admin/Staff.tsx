@@ -9,7 +9,9 @@ const Staff = () => {
       <StyledContent>
         <ul>
           <li>
-            <div>Mess Staff</div>
+            <div>
+              <p>Mess Staff</p>
+            </div>
             <div>
               <p>Staff Member 1: +91 1234567890</p>
               <p>Staff Member 2: +91 7984357690</p>
@@ -17,7 +19,9 @@ const Staff = () => {
             </div>
           </li>
           <li>
-            <div>Cleaning Staff</div>
+            <div>
+              <p>Cleaning Staff</p>
+            </div>
             <div>
               <p>Staff Member 1: +91 1234567890</p>
               <p>Staff Member 2: +91 7984357690</p>
@@ -25,14 +29,18 @@ const Staff = () => {
             </div>
           </li>
           <li>
-            <div>Carpenter</div>
+            <div>
+              <p>Carpenter</p>
+            </div>
             <div>
               <p>lorem: +91 1234567890</p>
               <p>epsum: +91 7984357690</p>
             </div>
           </li>
           <li>
-            <div>Guards</div>
+            <div>
+              <p>Guards</p>
+            </div>
             <div>
               <p>Guard 1: +91 1234567890</p>
               <p>Guard 2: +91 7984357690</p>
@@ -40,7 +48,9 @@ const Staff = () => {
             </div>
           </li>
           <li>
-            <div>Caretaker</div>
+            <div>
+              <p>Caretaker</p>
+            </div>
             <div>
               <p>Day Caretaker: +91 1234567890</p>
               <p>Night Caretaker: +91 7984357690</p>
@@ -91,6 +101,10 @@ const StyledContent = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    transition: color ease 0.2s;
+    p:hover {
+      color: #535353;
+    }
   }
   @media (max-width: 900px) {
     ul {

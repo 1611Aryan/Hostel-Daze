@@ -99,7 +99,10 @@ const RequestService: React.FC<{ user: any }> = ({ user }) => {
           onChange={changeHandler}
           required
         ></textarea>
-        <button>Submit</button>
+        <button>
+          <div className="btnOverlay"></div>
+          <span>Submit</span>
+        </button>
       </form>
     </StyledRequestService>
   );
@@ -259,9 +262,10 @@ const StyledRequestService = styled.section`
       border: 0;
       border-radius: 5px;
       background: rgba(255, 255, 255, 0.8);
-      &:focus {
+      &:focus,
+      &:hover {
         outline: 0;
-        background: rgba(255, 255, 255, 1);
+        background: #f6ffa1;
       }
     }
     textarea {
@@ -284,11 +288,31 @@ const StyledRequestService = styled.section`
       font-size: clamp(0.9rem, 3vw, 1.25rem);
       background: rgba(238, 238, 238, 0.8);
       border-radius: 5px;
-      &:focus,
-      &:hover {
-        background: rgba(238, 238, 238, 1);
+      position: relative;
+      overflow: hidden;
+      .btnOverlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        transition: transform ease 0.3s;
+        transform: translateX(-100%);
+        background: #edff85;
+        z-index: 1;
       }
-    }
+      span {
+        position: relative;
+        z-index: 5;
+      }
+      &:hover {
+        span {
+          color: black;
+        }
+        .btnOverlay {
+          transform: translateX(0);
+        }
+      }
   }
   @media (max-width: 650px) {
     form {

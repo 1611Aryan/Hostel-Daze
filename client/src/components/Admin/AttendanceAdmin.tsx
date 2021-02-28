@@ -92,8 +92,12 @@ const StyledContent = styled.div`
     border-bottom: 2px solid #000;
     align-items: center;
     font-size: clamp(0.5rem, 3vw, 1rem);
+    transition: background ease 0.3s;
     span {
       min-width: 20%;
+    }
+    &:hover {
+      background: #ffffff60;
     }
   }
 `;
