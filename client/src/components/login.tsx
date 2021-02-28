@@ -6,6 +6,9 @@ import logo from "./../img/thaparLogo.png";
 import student from "./../img/student.png";
 import admin from "./../img/admin.png";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBuilding } from "@fortawesome/free-solid-svg-icons";
+
 const Login: React.FC<{
   setLogin: any;
   setUser: React.Dispatch<
@@ -75,7 +78,9 @@ const Login: React.FC<{
     <StyledLogin>
       <StyledHeader>
         <h1>
-          <a href="/">HostelDaze</a>
+          <a href="/">
+            HostelDaze &nbsp; <FontAwesomeIcon icon={faBuilding} />
+          </a>
         </h1>
         <a href="http://www.thapar.edu/" className="logo">
           <img src={logo} alt="thapar-logo" />
