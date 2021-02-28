@@ -33,8 +33,14 @@ const DecideToEat: React.FC<{
         </p>
         {!user.response.sent ? (
           <div className="buttonContainer">
-            <button onClick={() => clickHandler(true, true)}>Yes!!</button>
-            <button onClick={() => clickHandler(true, false)}>No</button>
+            <button onClick={() => clickHandler(true, true)}>
+              <div className="btnOverlay"></div>
+              <span>Yes!!</span>
+            </button>
+            <button onClick={() => clickHandler(true, false)}>
+              <div className="btnOverlay"></div>
+              <span>No</span>
+            </button>
           </div>
         ) : (
           <p className="response">Already Responded</p>
@@ -101,6 +107,31 @@ const StyledDecideToEat = styled.section`
       padding: 1rem;
       border-radius: 15px;
       margin: 0 1rem;
+      position: relative;
+      overflow: hidden;
+      .btnOverlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        transition: transform ease 0.3s;
+        transform: translateX(-100%);
+        background: #eee;
+        z-index: 1;
+      }
+      span {
+        position: relative;
+        z-index: 5;
+      }
+      &:hover {
+        span {
+          color: black;
+        }
+        .btnOverlay {
+          transform: translateX(0);
+        }
+      }
     }
     button + button {
       background: #393e46;

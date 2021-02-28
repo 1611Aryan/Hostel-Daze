@@ -11,6 +11,7 @@ const Home: React.FC<{ access: string }> = ({ access }) => {
         <div className="content">
           <p>Checked In for Lunch/Dinner Yet ?</p>
           <button>
+            <div className="btnOverlay"></div>
             <Link to="/choose">Check In Now</Link>
           </button>
         </div>
@@ -63,11 +64,35 @@ const StyledHome = styled.main`
       margin-bottom: 1.25rem;
     }
     button {
-      background: #ffd369;
-      color: #000;
+      background: #3b6d81;
+      color: #ffffff;
       font-size: clamp(1rem, 3vw, 1.75rem);
       padding: 1rem;
       border-radius: 15px;
+      position: relative;
+      overflow: hidden;
+      transition: color ease-out 0.2s 0.1s;
+      .btnOverlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        transition: transform ease 0.3s;
+        transform: translateX(-100%);
+        background: #eee;
+        z-index: 1;
+      }
+      a {
+        position: relative;
+        z-index: 4;
+      }
+      &:hover {
+        color: black;
+        .btnOverlay {
+          transform: translateX(0);
+        }
+      }
     }
   }
   @media (max-width: 600px) {

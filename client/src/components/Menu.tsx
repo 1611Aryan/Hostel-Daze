@@ -155,10 +155,18 @@ const StyledMenu = styled.section`
   .activeDay {
     background: #eee;
     color: #2d333c;
+    &:hover {
+      background: #eee;
+      color: #2d333c;
+    }
   }
   .activeTime {
     background: #eee !important;
     color: #2d333c !important;
+    &:hover {
+      background: #eee !important;
+      color: #2d333c !important;
+    }
   }
   img {
     position: absolute;
@@ -205,6 +213,11 @@ const StyledSidePanel = styled.div`
     padding: 2rem 4rem;
     cursor: pointer;
     font-size: clamp(0.7rem, 2vw, 1rem);
+    transition: background ease-in-out 0.2s, color ease-in-out 0.2s;
+    &:hover {
+      background: rgba(255, 255, 255, 0.4);
+      color: black;
+    }
   }
   li + li {
     border-bottom: 2px solid #2d333c;
@@ -242,6 +255,11 @@ const StyledFood = styled.div`
         background: rgba(87, 87, 87, 0.9);
         color: #eee;
         cursor: pointer;
+        transition: background ease-in-out 0.3s, color ease-in-out 0.3s;
+        &:hover {
+          background: rgba(255, 255, 255, 0.4);
+          color: black;
+        }
       }
     }
   }

@@ -314,9 +314,11 @@ const StyledForm = styled.form`
     background: rgba(255, 255, 255, 0.5);
     font-size: clamp(0.7rem, 2vw, 1rem);
     border: 2px solid #01105b;
-    &:focus {
+    transition: all ease 0.2s;
+    &:focus,
+    &:hover {
       outline: 0;
-      background: rgba(255, 255, 255, 0.3);
+      background: rgba(154, 201, 255, 0.5);
     }
   }
   span {
@@ -331,9 +333,11 @@ const StyledForm = styled.form`
     border-radius: 10px;
     background: rgba(255, 255, 255, 0.5);
     border: 2px solid #01105b;
+    transition: all ease 0.2s;
     &:focus,
     &:hover {
-      background: rgba(255, 255, 255, 0.3);
+      background: rgba(154, 201, 255, 0.5);
+      transform: scale(1.1);
     }
   }
   @media (max-width: 900px) {
