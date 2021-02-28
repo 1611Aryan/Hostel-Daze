@@ -130,7 +130,6 @@ const Login: React.FC<{
                   required
                   onChange={changeHandler}
                 />
-                <span>Forgot Password?</span>
                 <button>Login</button>
               </>
             ) : (
@@ -159,7 +158,7 @@ const Login: React.FC<{
                   required
                   onChange={changeHandler}
                 />
-                <span>Forgot Password?</span>
+
                 <button>Login</button>
               </>
             )}
