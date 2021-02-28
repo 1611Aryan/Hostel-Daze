@@ -81,9 +81,6 @@ function App() {
             <Route path="/admin/students" exact>
               <Students />
             </Route>
-            <Route path="/admin/dues" exact>
-              <Dues />
-            </Route>
             <Route path="/admin/staff" exact>
               <Staff />
             </Route>

@@ -30,7 +30,21 @@ if (process.env.NODE_ENV === "production") {
     express.static(path.join(__dirname, "client/build"))
   );
   app.use("/attendance", express.static(path.join(__dirname, "client/build")));
-  app.use("/my-dues", express.static(path.join(__dirname, "client/build")));
+  app.use("/admin", express.static(path.join(__dirname, "client/build")));
+  app.use("/admin/mess", express.static(path.join(__dirname, "client/build")));
+  app.use(
+    "/admin/attendance",
+    express.static(path.join(__dirname, "client/build"))
+  );
+  app.use(
+    "/admin/complaints",
+    express.static(path.join(__dirname, "client/build"))
+  );
+  app.use(
+    "/admin/students",
+    express.static(path.join(__dirname, "client/build"))
+  );
+  app.use("/admin/staff", express.static(path.join(__dirname, "client/build")));
 }
 
 app.listen(port, () => console.log(`Server Running on port ${port}`));
