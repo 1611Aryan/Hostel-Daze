@@ -36,9 +36,9 @@ const MessStatus = () => {
             student.response.eating ? eating++ : notEating++;
         });
         setResponses({
-          eating: eating + 21,
-          notEating: notEating + 11,
-          total: eating + notEating,
+          eating: eating + 7,
+          notEating: notEating + 15,
+          total: students.length + 22,
         });
       } catch (err) {
         throw err;
