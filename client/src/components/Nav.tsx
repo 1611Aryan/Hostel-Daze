@@ -1,9 +1,8 @@
-import { useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faBuilding } from "@fortawesome/free-solid-svg-icons";
 import placeholderImage from "./../img/placeholder.png";
 
 interface NavInterface {
@@ -37,47 +36,31 @@ const Nav: React.FC<NavInterface> = ({
   user,
   setUser,
 }) => {
-  //State
-  const [logoutModal, setLogoutModal] = useState(false);
-
   //Handlers
-  const showLogoutModal = () => {
-    setLogoutModal(!logoutModal);
-  };
 
   const showSideBar = () => {
     setSideBarStatus(!sideBarStatus);
   };
 
-  const logout = () => {
-    setLogin({
-      status: false,
-      access: null,
-    });
-    setUser(null);
-  };
-
   return (
     <StyledNav>
       <Link to={user?.access === "student" ? "/" : "/admin"}>
-        <h1>HostelDaze</h1>
+        <h1>
+          HostelDaze&nbsp;
+          <FontAwesomeIcon icon={faBuilding} />
+        </h1>
       </Link>
       {!sideBarStatus && (
         <StyledOptions>
-          <div className="profile" onClick={showLogoutModal}>
+          <div className="profile">
             <img src={placeholderImage} alt="profile" />
             <span>{user?.name}</span>
-            {logoutModal && (
-              <StyledLogoutModal>
-                <p onClick={logout}>
-                  Logout <FontAwesomeIcon icon={faSignOutAlt} />
-                </p>
-              </StyledLogoutModal>
-            )}
           </div>
           {user?.access === "student" ? (
             <FontAwesomeIcon icon={faBars} onClick={showSideBar} />
-          ) : null}
+          ) : (
+            ""
+          )}
         </StyledOptions>
       )}
     </StyledNav>
@@ -88,14 +71,18 @@ const StyledNav = styled.nav`
   z-index: 90;
   width: 100vw;
   height: var(--navBarHeight);
-  padding: 1rem;
+  padding: clamp(0.5rem, 2vw, 1rem);
   background: rgba(34, 40, 49, 0.95);
   color: #eee;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  a {
+    width: 100%;
+  }
   h1 {
-    font-size: 2rem;
+    width: 100%;
+    font-size: clamp(1.15rem, 3vw, 2rem);
   }
 `;
 
@@ -103,7 +90,7 @@ const StyledOptions = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 1.35rem;
+  font-size: clamp(0.9rem, 2vw, 1.35rem);
 
   svg {
     cursor: pointer;
@@ -126,16 +113,4 @@ const StyledOptions = styled.div`
   }
 `;
 
-const StyledLogoutModal = styled.div`
-  z-index: 999;
-  position: absolute;
-  top: var(--navBarHeight);
-  right: 0;
-  width: 20%;
-  background: rgba(34, 40, 49, 0.95);
-  padding: 1rem 2rem;
-  p {
-    cursor: pointer;
-  }
-`;
 export default Nav;

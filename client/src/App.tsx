@@ -8,7 +8,7 @@ import DecideToEat from "./components/DecideToEat";
 import Menu from "./components/Menu";
 import RequestService from "./components/RequestService";
 import Attendance from "./components/Attendance";
-import MyDues from "./components/MyDues";
+
 import Login from "./components/login";
 import useLocalStorage from "./Hooks/useLocalStorage";
 import AdminPanel from "./components/Admin/AdminPanel";
@@ -17,6 +17,7 @@ import AttendanceAdmin from "./components/Admin/AttendanceAdmin";
 import Complaints from "./components/Admin/Complaints";
 import Dues from "./components/Admin/Dues";
 import Students from "./components/Admin/Students";
+import Staff from "./components/Admin/Staff";
 
 function App() {
   //state
@@ -45,28 +46,28 @@ function App() {
             user={user}
             sideBarStatus={sideBarStatus}
             setSideBarStatus={setSideBarStatus}
+            setLogin={setLogin}
+            setUser={setUser}
           />
           <Switch>
             <Route path="/" exact>
               <Home access={user.access} />
             </Route>
             <Route path="/choose" exact>
-              <DecideToEat />
+              <DecideToEat setUser={setUser} user={user} />
             </Route>
             <Route path="/menu" exact>
               <Menu />
             </Route>
             <Route path="/request-service" exact>
-              <RequestService />
+              <RequestService user={user} />
             </Route>
             <Route path="/attendance" exact>
               <Attendance />
             </Route>
-            <Route path="/my-dues" exact>
-              <MyDues />
-            </Route>
+
             <Route path="/admin" exact>
-              <AdminPanel login={login} />
+              <AdminPanel login={login} setLogin={setLogin} setUser={setUser} />
             </Route>
             <Route path="/admin/mess" exact>
               <MessStatus />
@@ -82,6 +83,9 @@ function App() {
             </Route>
             <Route path="/admin/dues" exact>
               <Dues />
+            </Route>
+            <Route path="/admin/staff" exact>
+              <Staff />
             </Route>
           </Switch>
         </>

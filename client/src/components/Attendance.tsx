@@ -41,6 +41,7 @@ const Attendance = () => {
 const StyledAttendance = styled.section`
   width: 100vw;
   height: calc(100vh - var(--navBarHeight));
+  overflow: hidden;
   background: #cfb899;
   display: flex;
   justify-content: flex-start;
@@ -51,13 +52,13 @@ const StyledHeader = styled.header`
   width: 100%;
   padding: 1rem;
   text-align: center;
-  font-size: 1.5rem;
+  font-size: clamp(1rem, 3vw, 1.5rem);
 `;
 const StyledContent = styled.main`
   width: 100%;
   height: 100%;
   padding: 4rem;
-  font-size: 1.35rem;
+  font-size: clamp(0.9rem, 3vw, 1.35rem);
   div {
     margin: 2rem 0;
   }

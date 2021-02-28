@@ -2,13 +2,51 @@ import { useState } from "react";
 import styled from "styled-components";
 import menuBG from "./../img/menuBg.jpg";
 
+const food = [
+  [
+    ["Coffee", "Tea", "Sandwhich", "Omlette"],
+    ["Pav Bhaji", "Daal", "Roti", "Raita"],
+    ["Paneer", "Dal", "Kheer", "Roti"],
+  ],
+  [
+    ["Coffee", "Tea", "Idli", "Dosa"],
+    ["Chane Bhature", "Daal", "Roti", "Raita"],
+    ["Manchurian", "Dal", "Ice-Cream", "Roti"],
+  ],
+  [
+    ["Coffee", "Tea", "Sandwhich", "Omlette"],
+    ["Curry", "Daal", "Roti", "Raita", "Rice"],
+    ["Paneer", "Dal", "Gulab Jamun", "Roti"],
+  ],
+  [
+    ["Coffee", "Tea", "Idli", "Dosa"],
+    ["Amritsari Kulcha", "Daal", "Roti", "Raita"],
+    ["Cheese Chilly", "Dal", "Kulfi", "Roti"],
+  ],
+  [
+    ["Coffee", "Tea", "Sandwhich", "Omlette"],
+    ["Saag", "Makki Roti", "Daal", "Roti", "Raita"],
+    ["Channe", "Dal", "Pastry", "Roti"],
+  ],
+  [
+    [" Cold Coffee", "Tea", "Idli", "Dosa"],
+    ["Chane", "Daal", "Roti", "Raita"],
+    ["Paneer", "Dal", "Gulab Jamun"],
+  ],
+  [
+    [" Cold Coffee", "Tea", "Idli", "Dosa"],
+    ["Paneer", "Daal", "Roti", "Raita"],
+    ["Palak Paneer", "Dal", "Kheer", "Roti"],
+  ],
+];
+
 const Menu = () => {
   const [day, setDay] = useState(() => new Date().getDay());
   const [time, setTime] = useState(() => {
     const time = new Date().getHours();
     if (time <= 8) return 0;
     if (time <= 14) return 1;
-    if (time <= 23) return 2;
+    else return 2;
   });
 
   const ChangeDay = (d: number) => {
@@ -29,7 +67,7 @@ const Menu = () => {
             onClick={() => ChangeDay(1)}
             className={day === 1 ? "activeDay" : ""}
           >
-            Monday
+            <p> Monday</p>
           </li>
           <li
             onClick={() => ChangeDay(2)}
@@ -62,8 +100,8 @@ const Menu = () => {
             Saturday
           </li>
           <li
-            onClick={() => ChangeDay(7)}
-            className={day === 7 ? "activeDay" : ""}
+            onClick={() => ChangeDay(0)}
+            className={day === 0 ? "activeDay" : ""}
           >
             Sunday
           </li>
@@ -77,20 +115,29 @@ const Menu = () => {
               className={time === 0 ? "activeTime" : ""}
             >
               BreakFast
+              <br />
+              (7:00-9:00A.M.)
             </li>
             <li
               onClick={() => ChangeTime(1)}
               className={time === 1 ? "activeTime" : ""}
             >
               Lunch
+              <br />
+              (12:00-2:00P.M.)
             </li>
             <li
               onClick={() => ChangeTime(2)}
               className={time === 2 ? "activeTime" : ""}
             >
               Dinner
+              <br />
+              (8:00-10:00P.M.)
             </li>
           </ul>
+        </div>
+        <div className="content">
+          <p>{food[day][time].join(", ")}</p>
         </div>
       </StyledFood>
     </StyledMenu>
@@ -151,15 +198,26 @@ const StyledSidePanel = styled.div`
   }
 
   li {
+    text-align: center;
     border-bottom: 2px solid #2d333c;
     width: 100%;
     height: calc(100% % 7);
     padding: 2rem 4rem;
     cursor: pointer;
+    font-size: clamp(0.7rem, 2vw, 1rem);
   }
   li + li {
     border-bottom: 2px solid #2d333c;
     border-top: 0;
+  }
+  @media (max-width: 550px) {
+    width: 40%;
+    li {
+      padding: 1.5rem 0;
+    }
+  }
+  @media (max-width: 550px) {
+    width: 45%;
   }
 `;
 const StyledFood = styled.div`
@@ -177,12 +235,40 @@ const StyledFood = styled.div`
       border-bottom: 2px solid #2d333c;
 
       li {
-        //border-radius: 0 10px 0 0;
-        padding: 1rem 2rem;
+        font-size: clamp(0.7rem, 2vw, 1rem);
+        text-align: center;
+        padding: 0.7rem 2rem;
         border-right: 2px solid #2d333c;
         background: rgba(87, 87, 87, 0.9);
         color: #eee;
         cursor: pointer;
+      }
+    }
+  }
+  .content {
+    z-index: 5;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: clamp(1.25rem, 3vw, 2rem);
+    text-align: center;
+    padding: 1rem;
+    color: white;
+  }
+  @media (max-width: 600px) {
+    .time {
+      li {
+        padding: 0.5rem 1rem !important;
+      }
+    }
+  }
+  @media (max-width: 450px) {
+    .time {
+      li {
+        padding: 0.5rem !important;
       }
     }
   }

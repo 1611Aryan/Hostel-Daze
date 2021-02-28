@@ -20,7 +20,7 @@ const StyledSearchBar = styled.form`
   align-items: center;
   justify-content: center;
   input {
-    font-size: 0.9rem;
+    font-size: clamp(0.7rem, 2vw, 0.9rem);
     width: 100%;
     padding: 0.7rem;
     border: 0;
@@ -33,8 +33,8 @@ const StyledSearchBar = styled.form`
     }
   }
   button {
-    font-size: 1rem;
-    padding: 0.65rem 1rem;
+    font-size: clamp(0.7rem, 2vw, 0.9rem);
+    padding: 0.7rem 1rem;
     background: #d3e0ea;
     border-radius: 0 20px 20px 0;
   }

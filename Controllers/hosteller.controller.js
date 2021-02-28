@@ -53,3 +53,17 @@ exports.login = async (req, res) => {
     console.log(err);
   }
 };
+
+exports.update = async (req, res) => {
+  try {
+    const student = await Hosteller.findById(req.params.id);
+    student.response.sent = req.body.sent;
+    student.response.eating = req.body.eating;
+
+    await student.save();
+    res.send("Updated");
+  } catch (err) {
+    console.log(err);
+    res.status(500).send(err);
+  }
+};

@@ -1,7 +1,32 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-const AdminPanel: React.FC<{ login: any }> = ({ login }) => {
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
+
+const AdminPanel: React.FC<{
+  login: any;
+  setLogin: any;
+  setUser: React.Dispatch<
+    React.SetStateAction<{
+      name: string;
+      rollNumber: string;
+      year: string;
+      hostel: string;
+      password: string;
+      access: string;
+    } | null>
+  >;
+}> = ({ login, setLogin, setUser }) => {
+  const logout = () => {
+    setLogin({
+      status: false,
+      access: null,
+    });
+    setUser(null);
+    window.history.pushState({}, "", "/");
+  };
+
   if (login.access === "admin")
     return (
       <StyledAdminPanel>
@@ -47,22 +72,25 @@ const AdminPanel: React.FC<{ login: any }> = ({ login }) => {
         </StyledOption>
         <StyledOption
           style={{
-            background: "#C173FF",
-          }}
-        >
-          <div className="overlay"></div>
-          <Link to="/admin/dues">
-            <span> Dues</span>
-          </Link>
-        </StyledOption>
-        <StyledOption
-          style={{
             background: "#FFAB48",
           }}
         >
           <div className="overlay"></div>
-          <Link to="/admin">
-            <span>...</span>
+          <Link to="/admin/staff">
+            <span>Staff</span>
+          </Link>
+        </StyledOption>
+        <StyledOption
+          style={{
+            background: "#C173FF",
+          }}
+        >
+          <div className="overlay"></div>
+          <Link to="/" onClick={logout}>
+            <span>
+              Logout &nbsp;
+              <FontAwesomeIcon icon={faSignOutAlt}></FontAwesomeIcon>
+            </span>
           </Link>
         </StyledOption>
       </StyledAdminPanel>
@@ -78,7 +106,7 @@ const StyledAdminPanel = styled.section`
   height: calc(100vh - var(--navBarHeight));
   overflow: hidden;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
   flex-wrap: wrap;
   background: linear-gradient(
@@ -115,7 +143,7 @@ const StyledOption = styled.div`
   height: calc(100% / 2);
   font-family: "Open Sans", sans-serif;
   cursor: pointer;
-  font-size: 2rem;
+  font-size: clamp(1.2rem, 3vw, 2rem);
   border-radius: 10px;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
   position: relative;
@@ -127,7 +155,6 @@ const StyledOption = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
-    //background: rgba(128, 128, 128, 0.1);
   }
   &:hover {
     animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
@@ -149,6 +176,10 @@ const StyledOption = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+  @media (max-width: 600px) {
+    width: calc(100% / 2);
+    height: calc(100% / 3);
   }
 `;
 

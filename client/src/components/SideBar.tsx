@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faTimes, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 import placeholderImage from "./../img/placeholder.png";
 
 interface SideBarInterface {
@@ -14,14 +14,38 @@ interface SideBarInterface {
     year: string;
     hostel: string;
     password: string;
+    access: string;
   } | null;
+  setLogin: any;
+
+  setUser: React.Dispatch<
+    React.SetStateAction<{
+      name: string;
+      rollNumber: string;
+      year: string;
+      hostel: string;
+      password: string;
+      access: string;
+    } | null>
+  >;
 }
 
 const SideBar: React.FC<SideBarInterface> = ({
   setSideBarStatus,
   sideBarStatus,
   user,
+  setLogin,
+  setUser,
 }) => {
+  const logout = () => {
+    setLogin({
+      status: false,
+      access: null,
+    });
+    setUser(null);
+    window.history.pushState({}, "", "/");
+  };
+
   const HideSideBar = () => {
     setSideBarStatus(!sideBarStatus);
   };
@@ -36,17 +60,30 @@ const SideBar: React.FC<SideBarInterface> = ({
       </StyledHeader>
       <StyledOtherLinks>
         <ul>
-          <li onClick={HideSideBar}>
-            <Link to="/menu"> View Menu</Link>
-          </li>
-          <li onClick={HideSideBar}>
-            <Link to="/request-service"> Request for cleaning</Link>
-          </li>
-          <li onClick={HideSideBar}>
-            <Link to="/attendance">Attendance</Link>
-          </li>
-          <li onClick={HideSideBar}>
-            <Link to="/my-dues">My Dues</Link>
+          {user && user.access === "student" ? (
+            <>
+              {" "}
+              <li onClick={HideSideBar}>
+                <Link to="/menu"> View Menu</Link>
+              </li>
+              <li onClick={HideSideBar}>
+                <Link to="/request-service"> Request for cleaning</Link>
+              </li>
+              <li onClick={HideSideBar}>
+                <Link to="/attendance">Attendance</Link>
+              </li>
+            </>
+          ) : (
+            ""
+          )}
+
+          <li
+            onClick={() => {
+              HideSideBar();
+              logout();
+            }}
+          >
+            Logout <FontAwesomeIcon icon={faSignOutAlt} />
           </li>
         </ul>
       </StyledOtherLinks>
@@ -72,16 +109,21 @@ const StyledSideBar = styled.menu`
   justify-content: center;
   align-items: flex-start;
   flex-direction: column;
+  @media (max-width: 700px) {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(2px);
+  }
 `;
 
 const StyledHeader = styled.div`
   min-height: var(--navBarHeight);
   width: 100%;
-  padding: 1rem;
+  padding: clamp(0.5rem, 2vw, 1rem);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 1.35rem;
+  font-size: clamp(1rem, 2vw, 1.35rem);
   svg {
     cursor: pointer;
     font-size: 1.45rem;
@@ -111,9 +153,15 @@ const StyledOtherLinks = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   flex-direction: column;
-  font-size: 1.35rem;
+  font-size: clamp(1rem, 3vw, 1.35rem);
   ul {
     list-style-type: none;
+  }
+  li {
+    transition: transform ease 0.3s;
+  }
+  li:hover {
+    transform: scale(1.1);
   }
   li + li {
     margin-top: 3rem;
@@ -121,6 +169,7 @@ const StyledOtherLinks = styled.div`
 `;
 
 const StyledFooter = styled.div`
+  font-size: clamp(0.8rem, 3vw, 1.35rem);
   width: 100%;
   padding: 2rem 4rem;
 `;

@@ -8,6 +8,10 @@ const hostellerSchema = new Schema(
     year: { type: String, required: true },
     hostel: { type: String, required: true },
     password: { type: String, required: true },
+    response: {
+      sent: { type: Boolean, default: false },
+      eating: { type: Boolean, default: false },
+    },
   },
   {
     timestamps: true,

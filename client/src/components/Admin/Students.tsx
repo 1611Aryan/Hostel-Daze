@@ -8,6 +8,7 @@ const Students = () => {
   const [students, setStudents] = useState<
     | null
     | {
+        _id: string;
         name: string;
         rollNumber: string;
         year: string;
@@ -31,7 +32,7 @@ const Students = () => {
         throw err;
       }
     })();
-  }, []);
+  }, [URL]);
 
   return (
     <StyledStudents>
@@ -43,33 +44,17 @@ const Students = () => {
         <ul>
           {students &&
             students
-              .filter(
-                (student: {
-                  name: string;
-                  rollNumber: string;
-                  year: string;
-                  hostel: string;
-                  access: string;
-                }) => student.access !== "admin"
-              )
-              .map(
-                (s: {
-                  name: string;
-                  rollNumber: string;
-                  year: string;
-                  hostel: string;
-                  access: string;
-                }) => (
-                  <li>
-                    <div>
-                      <span>Name: {s.name}</span>
-                      <span>Roll Number: {s.rollNumber}</span>
-                      <span>Year: {s.year}</span>
-                      <span>Hostel: {s.hostel}</span>
-                    </div>
-                  </li>
-                )
-              )}
+              .filter(student => student.access !== "admin")
+              .map(s => (
+                <li key={s._id}>
+                  <div>
+                    <span>Name: {s.name}</span>
+                    <span>Roll Number: {s.rollNumber}</span>
+                    <span>Year: {s.year}</span>
+                    <span>Hostel: {s.hostel}</span>
+                  </div>
+                </li>
+              ))}
         </ul>
       </StyledMain>
     </StyledStudents>
@@ -88,7 +73,7 @@ const StyledHeader = styled.header`
   width: 100vw;
   padding: 0.5rem;
   text-align: center;
-  font-size: 1.25rem;
+  font-size: clamp(0.8rem, 3vw, 1.2rem);
   border-bottom: 2px solid #2d333c;
 `;
 const StyledMain = styled.main`
@@ -104,6 +89,7 @@ const StyledMain = styled.main`
       width: 100%;
       padding: 1.5rem 1rem;
       border-bottom: 0.5px solid black;
+      font-size: clamp(0.7rem, 1vw, 1rem);
       div {
         width: 100%;
         display: flex;
@@ -111,6 +97,7 @@ const StyledMain = styled.main`
         align-items: center;
         span {
           min-width: 20%;
+          max-width: 23%;
         }
       }
     }

@@ -1,7 +1,28 @@
+import axios from "axios";
 import styled from "styled-components";
 import food from "./../img/food.jpg";
 
-const DecideToEat = () => {
+const DecideToEat: React.FC<{
+  setUser: any;
+  user: any;
+}> = ({ setUser, user }) => {
+  //url
+  const URL =
+    process.env.NODE_ENV === "production"
+      ? "/student"
+      : "http://localhost:5000/student";
+
+  //handlers
+  const clickHandler = async (sent: boolean, eating: boolean) => {
+    try {
+      const res = await axios.put(`${URL}/${user._id}`, { sent, eating });
+      console.log(res.data);
+      setUser({ ...user, response: { sent, eating } });
+    } catch (err) {
+      throw err;
+    }
+  };
+
   return (
     <StyledDecideToEat>
       <img src={food} alt="food" />
@@ -10,10 +31,14 @@ const DecideToEat = () => {
         <p>
           I solemnly swear that I will be Having Dinner/Lunch in Mess Today{" "}
         </p>
-        <div className="buttonContainer">
-          <button>Yes!!</button>
-          <button>No</button>
-        </div>
+        {!user.response.sent ? (
+          <div className="buttonContainer">
+            <button onClick={() => clickHandler(true, true)}>Yes!!</button>
+            <button onClick={() => clickHandler(true, false)}>No</button>
+          </div>
+        ) : (
+          <p className="response">Already Responded</p>
+        )}
       </div>
     </StyledDecideToEat>
   );
@@ -22,6 +47,7 @@ const DecideToEat = () => {
 const StyledDecideToEat = styled.section`
   z-index: -1;
   position: absolute;
+  overflow: hidden;
   top: 0;
   left: 0;
   width: 100vw;
@@ -54,8 +80,12 @@ const StyledDecideToEat = styled.section`
     text-align: center;
     color: #fff;
     p {
-      font-size: 3rem;
-      margin-bottom: 5rem;
+      font-size: clamp(1.25rem, 4vw, 3rem);
+      margin-bottom: clamp(2rem, 5vw, 5rem);
+    }
+    .response {
+      font-size: clamp(1rem, 4vw, 2rem);
+      margin-bottom: 0rem;
     }
     .buttonContainer {
       width: 100%;
@@ -67,13 +97,29 @@ const StyledDecideToEat = styled.section`
       min-width: 15%;
       background: #222831;
       color: #fff;
-      font-size: 1.75rem;
+      font-size: clamp(1rem, 4vw, 1.75rem);
       padding: 1rem;
       border-radius: 15px;
       margin: 0 1rem;
     }
     button + button {
       background: #393e46;
+    }
+  }
+  @media (max-width: 600px) {
+    .content {
+      width: 80%;
+      button {
+        width: 20%;
+      }
+    }
+  }
+  @media (max-width: 400px) {
+    .content {
+      width: 90%;
+      button {
+        width: 30%;
+      }
     }
   }
 `;

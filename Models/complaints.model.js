@@ -6,6 +6,7 @@ const complaintSchema = new Schema(
     name: { type: String, required: true },
     rollNumber: { type: String, required: true },
     issue: { type: String, required: true },
+    roomNumber: { type: String, required: true },
   },
   {
     timestamps: true,

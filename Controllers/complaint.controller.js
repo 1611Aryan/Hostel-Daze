@@ -15,10 +15,20 @@ exports.add = async (req, res) => {
     name: req.body.name,
     rollNumber: req.body.rollNumber,
     issue: req.body.issue,
+    roomNumber: req.body.roomNumber,
   });
   try {
     await newComplaint.save();
-    res.status(202).send("Complaint Sent");
+    res.status(202).send("Complaint Sent Successfully");
+  } catch (err) {
+    res.status(500).send(err);
+  }
+};
+
+exports.deleteComplaint = async (req, res) => {
+  try {
+    await Complaint.deleteOne({ _id: req.params.id });
+    res.status(200).send("Deleted");
   } catch (err) {
     res.status(500).send(err);
   }

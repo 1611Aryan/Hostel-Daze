@@ -22,6 +22,7 @@ const StyledHome = styled.main`
   position: absolute;
   top: 0;
   left: 0;
+  overflow: hidden;
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -52,15 +53,25 @@ const StyledHome = styled.main`
     text-align: center;
     color: #fff;
     p {
-      font-size: 5rem;
+      font-size: clamp(1rem, 9vw, 5rem);
       margin-bottom: 1.25rem;
     }
     button {
       background: #ffd369;
-      color: #393e46;
-      font-size: 1.75rem;
+      color: #000;
+      font-size: clamp(1rem, 3vw, 1.75rem);
       padding: 1rem;
       border-radius: 15px;
+    }
+  }
+  @media (max-width: 600px) {
+    .content {
+      width: 80%;
+    }
+  }
+  @media (max-width: 400px) {
+    .content {
+      width: 90%;
     }
   }
 `;
